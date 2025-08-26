@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+model Transaction {
+  id        Int              @id @default(autoincrement())
+  type      TransactionType
+  category  String
+  amount    Int              // store in smallest unit (₹ as integer)
+  date      DateTime
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model Goal {
+  id        Int      @id @default(autoincrement())
+  name      String
+  target    Int      // total goal in ₹
+  saved     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Budget {
+  id        Int     @id @default(autoincrement())
+  category  String
+  limit     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RecurringExpense {
+  id        Int      @id @default(autoincrement())
+  title     String
+  amount    Float
+  category  String
+  interval  String
+  nextDate  DateTime
+
+  createdAt DateTime @default(now())
+}

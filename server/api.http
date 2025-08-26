@@ -1,0 +1,33 @@
+### Health
+GET http://localhost:3001/api/health
+
+### Create transaction
+POST http://localhost:3001/api/transactions
+Content-Type: application/json
+
+{
+  "type": "EXPENSE",
+  "category": "Groceries",
+  "amount": 1200,
+  "date": "2025-08-25"
+}
+
+### List transactions
+GET http://localhost:3001/api/transactions
+
+### Create goal
+POST http://localhost:3001/api/goals
+Content-Type: application/json
+
+{
+  "name": "New Laptop",
+  "target": 50000
+}
+
+### Update goal
+PATCH http://localhost:3001/api/goals/1
+Content-Type: application/json
+
+{
+  "saved": 10000
+}
